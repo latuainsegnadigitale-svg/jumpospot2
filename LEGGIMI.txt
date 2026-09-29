@@ -1,0 +1,44 @@
+JUMBO SPOT — pubblicazione con GitHub + Netlify (accesso protetto e Pixabay)
+
+COSA C'È IN QUESTA CARTELLA
+  netlify.toml                      impostazioni per Netlify
+  netlify/edge-functions/guard.js   la protezione: pagina di accesso + "Cerca online" (Pixabay, Pexels, Unsplash)
+  public/                           il sito Jumbo Spot (index.html, icone, ecc.)
+Le password e le chiavi delle librerie NON sono nei file: si inseriscono su Netlify (punto 3).
+
+1) GITHUB (una volta sola)
+  - Crea un account gratuito su github.com
+  - In alto a destra "+" > "New repository": nome jumbo-spot, scegli "Private", poi "Create repository"
+  - Nella pagina del repository vuoto clicca "uploading an existing file"
+  - Trascina TUTTO il contenuto della cartella jumbo-spot (netlify.toml, la cartella netlify,
+    la cartella public, questo LEGGIMI) in un colpo solo, poi "Commit changes"
+
+2) NETLIFY
+  - "Add new project" > "Import an existing project" > GitHub > autorizza > scegli jumbo-spot
+  - Le impostazioni di build sono già nel file netlify.toml: conferma e pubblica ("Deploy")
+
+3) IMPOSTAZIONI SEGRETE SU NETLIFY
+  - Project configuration (o Site configuration) > Environment variables > Add a variable
+  - Crea queste variabili (i valori te li ha dati Claude in chat):
+      JUMBO_USERS    utente:password      (più accessi: separali con uno spazio)
+      JUMBO_SECRET   stringa lunga casuale
+      PIXABAY_KEY    la chiave API di Pixabay               (foto e video)
+      PEXELS_KEY     la chiave API di Pexels                (foto e video)  facoltativa
+      UNSPLASH_KEY   la "Access Key" di Unsplash            (solo foto)     facoltativa
+    "Cerca online" usa tutte le librerie di cui trova la chiave: se una manca, cerca nelle altre.
+  - Poi Deploys > Trigger deploy > Deploy project, così la protezione legge i valori nuovi
+
+4) VERIFICA
+  - Apri il sito in una finestra in incognito: deve comparire la pagina "Jumbo Spot - Accesso riservato"
+  - Entra e prova "Cerca online" con una foto e con un video
+  - In fondo alla home c'è "Esci" per chiudere la sessione (dura 30 giorni per telefono)
+
+5) ELIMINA IL VECCHIO SITO
+  - Il sito caricato prima con il trascinamento è ancora pubblico: aprilo su Netlify >
+    Project configuration > General > Delete project
+
+AGGIORNAMENTI FUTURI
+  - Carica su GitHub solo i file cambiati, tutti insieme in un unico "Commit":
+    ogni commit fa ripartire la pubblicazione (15 crediti Netlify ciascuna)
+  - Per cambiare password: modifica JUMBO_USERS su Netlify e rifai "Trigger deploy".
+    Le vecchie sessioni si chiudono e serve la password nuova.

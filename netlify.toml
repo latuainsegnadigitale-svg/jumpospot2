@@ -1,0 +1,6 @@
+# Jumbo Spot — configurazione Netlify
+# Il sito è statico (cartella "public"); la funzione "guard" protegge l'accesso
+# e fa da intermediario verso Pixabay.
+[build]
+  publish = "public"
+  command = "echo Nessuna build necessaria"
